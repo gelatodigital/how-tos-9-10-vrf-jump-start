@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.18;
 
-import {GelatoVRFConsumerBase} from "./GelatoVRF/GelatoVRFConsumerBase.sol";
+import {GelatoVRFConsumerBase} from "./GelatoVRFConsumerBase.sol";
 
 contract SimpleVRFContract is GelatoVRFConsumerBase {
     address private immutable _operatorAddr; //

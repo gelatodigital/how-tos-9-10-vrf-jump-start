@@ -7,6 +7,7 @@ import * as dotenv from "dotenv";
 dotenv.config({ path: __dirname + "/.env" });
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const accounts: string[] = PRIVATE_KEY ? [PRIVATE_KEY] : [];
 
 const config: HardhatUserConfig = {
   solidity: "0.8.19",
@@ -22,9 +23,26 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {
       forking: {
-        url: `https://eth-sepolia.g.alchemy.com/v2/tdlRFhX6HRYC-q7paO9WNc3NpIIRetC3`,
-        blockNumber: 80000,
+        url: `https://rpc.arb-blueberry.gelato.digital`,
+        // blockNumber: 80000,
       },
+    },
+
+    // Shared Testnet
+    blueberry: {
+      accounts,
+      chainId: 88153591557,
+      url: `https://rpc.arb-blueberry.gelato.digital`,
+    },
+    raspberry: {
+      accounts,
+      chainId: 123420111,
+      url: `https://rpc.opcelestia-raspberry.gelato.digital`,
+    },
+    blackberry: {
+      accounts,
+      chainId: 94204209,
+      url: `https://rpc.polygon-blackberry.gelato.digital`,
     },
 
     blastSepolia: {
@@ -46,7 +64,19 @@ const config: HardhatUserConfig = {
     },
   },
   etherscan: {
-    apiKey: process.env.POLYGON_API_KEY,
+    apiKey: {
+      blueberry: "xxx",
+    },
+    customChains: [
+      {
+        network: "blueberry",
+        chainId: 88153591557,
+        urls: {
+          apiURL: "https://arb-blueberry.gelatoscout.com/api",
+          browserURL: "https://arb-blueberry.gelatoscout.com",
+        },
+      },
+    ],
   },
 };
 
