@@ -1,10 +1,10 @@
 import { ethers } from "hardhat";
-import { SimpleVRFCLContract__factory } from "../typechain-types";
+import { SimpleCLVRFContract__factory } from "../typechain-types";
 import * as dotenv from "dotenv";
 dotenv.config();
 
 async function main() {
-  const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+  const contractAddress = "0xe3689ABC2F6648BA8be68cE41620988C4e2708bd";
   const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
   if (!PRIVATE_KEY) {
@@ -15,7 +15,7 @@ async function main() {
   const [wallet] = await ethers.getSigners();
 
   // Connect to the contract using the local wallet
-  const vrfContract = SimpleVRFCLContract__factory.connect(
+  const vrfContract = SimpleCLVRFContract__factory.connect(
     contractAddress,
     wallet
   );
@@ -24,7 +24,7 @@ async function main() {
   // const data = ethers.utils.formatBytes32String("test data"); // Use formatBytes32String instead of encodeBytes32String
   const number = 10;
   console.log(`Requesting randomness with data: ${number}`);
-  const tx = await vrfContract.requestRandomWords(number);
+  const tx = await vrfContract.requestRandomness(number);
   console.log(`Transaction hash: ${tx.hash}`);
 }
 
