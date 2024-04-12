@@ -1,4 +1,4 @@
-# How To #10 on Gelato: VRF Walkthrough
+# How To #10 on Gelato: VRF Jump Start
 
 This repository provides example contracts and instructions for setting up Verifiable Random Function (VRF) on Gelato, utilizing both Gelato VRF and Gelato VRF (Chainlink Compatible).
 
