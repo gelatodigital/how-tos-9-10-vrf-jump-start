@@ -35,9 +35,9 @@ contract SimpleCLVRFContract is VRFConsumerBaseV2, Ownable {
     // The default is 3, but you can set this higher.
     uint16 requestConfirmations = 3;
 
-    // For this example, retrieve 1 random value in one request.
+    // For this example, retrieve 5 random value in one request.
     // Cannot exceed VRFCoordinatorV2.MAX_NUM_WORDS.
-    uint32 numWords = 1;
+    uint32 numWords = 5;
 
     uint256 public requestId;
     struct Request {
@@ -57,13 +57,11 @@ contract SimpleCLVRFContract is VRFConsumerBaseV2, Ownable {
         COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
     }
 
-    function requestRandomness(uint256 _count) external {
-        for (uint256 i; i < _count; i++) {
-            _requestRandomness();
-        }
+    function requestRandomWords() external {
+        _requestRandomWords();
     }
 
-    function _requestRandomness() private {
+    function _requestRandomWords() private {
         requestId = COORDINATOR.requestRandomWords(
             s_keyHash,
             s_subscriptionId,
@@ -95,5 +93,10 @@ contract SimpleCLVRFContract is VRFConsumerBaseV2, Ownable {
     function setCoordinator(address _vrfCoordinator) external onlyOwner {
         setVRFCoordinator(_vrfCoordinator);
         COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
+    }
+
+    //Setter for numWords
+    function setNumWords(uint32 _numWords) external onlyOwner {
+        numWords = _numWords;
     }
 }

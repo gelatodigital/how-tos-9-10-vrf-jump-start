@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 async function main() {
-  const contractAddress = "0xe3689ABC2F6648BA8be68cE41620988C4e2708bd";
+  const contractAddress = "0x99fd72B02223CB9bb879d1a7aFf4e756B4B79A3C";
   const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
   if (!PRIVATE_KEY) {
@@ -22,9 +22,9 @@ async function main() {
 
   // Request randomness
   // const data = ethers.utils.formatBytes32String("test data"); // Use formatBytes32String instead of encodeBytes32String
-  const number = 10;
+  const number = 5;
   console.log(`Requesting randomness with data: ${number}`);
-  const tx = await vrfContract.requestRandomness(number);
+  const tx = await vrfContract.requestRandomWords();
   console.log(`Transaction hash: ${tx.hash}`);
 }
 
